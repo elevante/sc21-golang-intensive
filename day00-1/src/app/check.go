@@ -1,14 +1,10 @@
-package flag
-
-import (
-	"golang-indermediate-intensive/module00/ex00/app/anscombe"
-)
+package main
 
 func CheckFlagsAndPrintCalculation() {
 	flags := NewFlags()
 	flags.Parse()
 
-	resultAnscombe := anscombe.Anscombe{}
+	resultAnscombe := Anscombe{}
 	resultAnscombe.Read()
 
 	if *flags.Mean {
@@ -22,7 +18,8 @@ func CheckFlagsAndPrintCalculation() {
 	}
 	if *flags.SD {
 		resultAnscombe.StandardDeviationCalculation()
-	} else {
+	}
+	if !*flags.Mean && !*flags.Median && !*flags.Mode && !*flags.SD {
 		resultAnscombe.AverageCalculation()
 		resultAnscombe.MedianCalculation()
 		resultAnscombe.ModeCalculation()
