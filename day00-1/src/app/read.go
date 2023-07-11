@@ -8,7 +8,8 @@ import (
 )
 
 type Anscombe struct {
-	Data []float64
+	Data     []float64
+	quantity int
 }
 
 func Read(a *Anscombe) {
@@ -32,4 +33,6 @@ func Read(a *Anscombe) {
 			a.Data = append(a.Data, float64(value))
 		}
 	}
+
+	a.quantity = len(a.Data)
 }
