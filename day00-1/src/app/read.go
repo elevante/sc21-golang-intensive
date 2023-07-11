@@ -12,7 +12,7 @@ type Anscombe struct {
 	quantity int
 }
 
-func Read(a *Anscombe) {
+func (a *Anscombe) Read() {
 
 	input := bufio.NewScanner(os.Stdin)
 
@@ -33,6 +33,5 @@ func Read(a *Anscombe) {
 			a.Data = append(a.Data, float64(value))
 		}
 	}
-
 	a.quantity = len(a.Data)
 }
