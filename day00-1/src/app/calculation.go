@@ -15,8 +15,8 @@ func (a *Anscombe) AverageCalculation() {
 	for _, n := range a.Data {
 		sum += n
 	}
-	avarage := sum / float64(a.quantity)
-	fmt.Printf("Mean: %.2f\n", avarage)
+	average := sum / float64(a.quantity)
+	fmt.Printf("Mean: %.2f\n", average)
 }
 
 //MedianCalculation Медиана — число, которое находится в середине этого набора, если его упорядочить по возрастанию,
