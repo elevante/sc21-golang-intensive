@@ -27,24 +27,33 @@ func Compare(oldFile string, newFile string) {
 
 	fileOld, err := os.Open(oldFile)
 	if err != nil {
-		log.Fatalf("Error when opening file: %s", err)
+		log.Fatalf("Error when opening old file: %s", err)
 	}
 
 	fileOldScanner := bufio.NewScanner(fileOld)
 	for i := 0; fileOldScanner.Scan(); i++ {
 		d.arrOld = append(d.arrOld, fileOldScanner.Text())
 	}
-	fileOld.Close()
+	defer func() {
+		if err = fileOld.Close(); err != nil {
+			log.Fatal(err)
+		}
+	}()
 
 	fileNew, err := os.Open(newFile)
 	if err != nil {
-		log.Fatalf("Error when opening file: %s", err)
+		log.Fatalf("Error when opening new file: %s", err)
 	}
 
 	fileNewScanner := bufio.NewScanner(fileNew)
 	for i := 0; fileNewScanner.Scan(); i++ {
 		d.arrNew = append(d.arrNew, fileNewScanner.Text())
 	}
+	defer func() {
+		if err = fileNew.Close(); err != nil {
+			log.Fatal(err)
+		}
+	}()
 
 	for i := 0; i < len(d.arrNew); i++ {
 		if Contains(d.arrOld, d.arrNew[i]) == false {
