@@ -1,7 +1,7 @@
 package main
 
 import (
-	"day00/src/ex00/app"
+	"ex00/app"
 )
 
 func main() {

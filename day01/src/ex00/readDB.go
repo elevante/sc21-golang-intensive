@@ -74,10 +74,6 @@ func (x *XMLReader) Convert() []byte {
 	return data
 }
 
-func main() {
-	Start()
-}
-
 func Start() {
 
 	FlagF := flag.String("f", "", "")
@@ -96,4 +92,8 @@ func Start() {
 func Parse(file string, reader DBReader) {
 	path := filepath.Join(file)
 	fmt.Printf("%v\n\n%v", reader.Read(path), string(reader.Convert()))
+}
+
+func main() {
+	Start()
 }

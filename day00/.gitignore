@@ -49,4 +49,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-!go.mod
+!src/ex00/go.mod
