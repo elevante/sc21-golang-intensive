@@ -94,6 +94,6 @@ func Start() {
 }
 
 func Parse(file string, reader DBReader) {
-	path := filepath.Join("../", "files/", file)
+	path := filepath.Join(file)
 	fmt.Printf("%v\n\n%v", reader.Read(path), string(reader.Convert()))
 }

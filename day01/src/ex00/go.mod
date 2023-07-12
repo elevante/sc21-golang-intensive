@@ -1,3 +1,3 @@
-module ex00
+module readDB
 
 go 1.18
