@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func main() {
+func Find() {
 
 	flagF := flag.Bool("f", false, "")
 	flagSl := flag.Bool("sl", false, "")
@@ -18,7 +18,10 @@ func main() {
 	flag.Parse()
 
 	err := filepath.Walk(flag.Args()[0], func(path string, info os.FileInfo, err error) error {
-		if err != nil {
+
+		if os.IsPermission(err) {
+			return filepath.SkipDir
+		} else if err != nil {
 			fmt.Println(err)
 			return nil
 		}
@@ -32,7 +35,6 @@ func main() {
 				if err == nil {
 					fmt.Printf("/%s -> /%s\n", path, linkPath)
 				}
-
 			} else {
 				fmt.Printf("/%s\n", path)
 			}
