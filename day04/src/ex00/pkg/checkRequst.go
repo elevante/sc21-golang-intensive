@@ -1,4 +1,4 @@
-package utils
+package pkg
 
 import (
 	"day04/ex00/models"

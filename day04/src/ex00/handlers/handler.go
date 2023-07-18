@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"day04/ex00/models"
-	"day04/ex00/utils"
+	"day04/ex00/pkg"
 	"encoding/json"
 	"io/ioutil"
 	"log"
@@ -32,5 +32,5 @@ func PostOrder(w http.ResponseWriter, r *http.Request, o *models.Order) {
 		log.Println(err)
 		http.Error(w, "Error reading request body", http.StatusBadRequest)
 	}
-	utils.CheckRequest(w, o)
+	pkg.CheckRequest(w, o)
 }
