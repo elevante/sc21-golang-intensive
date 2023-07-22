@@ -1,8 +1,8 @@
 package pkg
 
 import (
-	"day04/ex00/models"
 	"encoding/json"
+	"ex00/server/models"
 	"fmt"
 	"log"
 	"net/http"

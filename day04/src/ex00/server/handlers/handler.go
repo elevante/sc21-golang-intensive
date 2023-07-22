@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"day04/ex00/models"
-	"day04/ex00/pkg"
 	"encoding/json"
+	"ex00/server/models"
+	"ex00/server/pkg"
 	"io/ioutil"
 	"log"
 	"net/http"
