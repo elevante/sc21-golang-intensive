@@ -82,9 +82,9 @@ func (a *Anscombe) StandardDeviationCalculation() {
 	for _, n := range a.Data {
 		sum += n
 	}
-	avarage := sum / float64(a.quantity)
+	average := sum / float64(a.quantity)
 	for _, n := range a.Data {
-		standardDeviation += math.Pow(n-avarage, 2)
+		standardDeviation += math.Pow(n-average, 2)
 	}
 	res := math.Sqrt(standardDeviation / float64(a.quantity))
 	fmt.Printf("SD: %.2f\n", res)
