@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"math"
 	"sort"
-	"strings"
 )
 
 //AverageCalculation Среднее арифметическое — разновидность среднего значения.
@@ -39,19 +38,38 @@ func (a *Anscombe) MedianCalculation() {
 //в данной совокупности,т.e. это варианта, имеющая наибольшую частоту.
 
 func (a *Anscombe) ModeCalculation() {
-	var arr []float64
-	for i := 0; i < len(a.Data); i++ {
-		for j := i + 1; j < len(a.Data); j++ {
-			if a.Data[i] == a.Data[j] {
-				arr = append(arr, a.Data[i])
-			}
+
+	if len(a.Data) == 0 {
+		fmt.Println("No mode")
+		return
+	}
+	modeFrequency := make(map[float64]int)
+	for _, val := range a.Data {
+		modeFrequency[val]++
+	}
+	maxFrequency := 0
+	var modes []float64
+
+	for val, frequency := range modeFrequency {
+		if frequency > maxFrequency {
+			maxFrequency = frequency
+			modes = []float64{val}
+		} else if frequency == maxFrequency {
+			modes = append(modes, val)
 		}
 	}
-	if len(arr) == 0 {
+	if maxFrequency <= 1 {
 		fmt.Println("No mode")
-	} else {
-		fmt.Printf("Mode: %v\n", strings.Trim(fmt.Sprintf("%.2f", arr), "[]"))
+		return
 	}
+
+	minMode := modes[0]
+	for _, mode := range modes {
+		if mode < minMode {
+			minMode = mode
+		}
+	}
+	fmt.Printf("Mode: %.2f\n", minMode)
 }
 
 //StandardDeviationCalculation Среднеквадратическое отклонение — наиболее распространённый показатель рассеивания значений случайной величины

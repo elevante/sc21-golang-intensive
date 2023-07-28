@@ -3,6 +3,7 @@ package app
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 )
@@ -26,11 +27,14 @@ func (a *Anscombe) Read() {
 		value, err := strconv.Atoi(input.Text())
 		if err != nil {
 			fmt.Println("Invalid value entered")
-			break
+			continue
 		}
 
 		if value >= -100000 && value <= 100000 {
 			a.Data = append(a.Data, float64(value))
+		} else {
+			log.Println("The entered value is greater than 100000 or less than -100000")
+			os.Exit(1)
 		}
 	}
 	a.quantity = len(a.Data)
