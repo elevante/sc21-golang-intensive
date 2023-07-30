@@ -64,7 +64,6 @@ func Find() {
 			if info.Mode().IsRegular() {
 				fmt.Printf("%s\n", path)
 			}
-
 		}
 		return err
 	})
