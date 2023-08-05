@@ -47,12 +47,13 @@ func Find() {
 
 		if *flagSl {
 			if info.Mode()&os.ModeSymlink != 0 {
-				_, err := filepath.EvalSymlinks(path)
-				if err != nil {
-					fmt.Println(err)
-					return err
+				linkPath, err := filepath.EvalSymlinks(path)
+				if os.IsNotExist(err) {
+					fmt.Printf("/%s -> broken\n", path)
 				}
-				fmt.Printf("/%s\n", path)
+				if err == nil {
+					fmt.Printf("/%s -> /%s\n", path, linkPath)
+				}
 			}
 		}
 
@@ -70,4 +71,7 @@ func Find() {
 	if err != nil {
 		fmt.Println(err)
 	}
+}
+func main() {
+	Find()
 }
