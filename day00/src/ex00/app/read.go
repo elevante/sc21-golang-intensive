@@ -23,9 +23,12 @@ func (a *Anscombe) Read() {
 			fmt.Println("Stop entering numbers")
 			break
 		}
+		if input.Text() == "" {
+			fmt.Println("Empty line. Nothing has been entered.")
+		}
 
 		value, err := strconv.Atoi(input.Text())
-		if err != nil {
+		if err != nil && input.Text() != "" {
 			fmt.Println("Invalid value entered")
 			continue
 		}

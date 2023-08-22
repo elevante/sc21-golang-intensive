@@ -26,10 +26,14 @@ func (a *Anscombe) MedianCalculation() {
 	sort.Slice(a.Data, func(i, j int) bool {
 		return a.Data[i] < a.Data[j]
 	})
-	if a.quantity%2 == 0 {
-		medianValue = (a.Data[(a.quantity-1)/2] + a.Data[a.quantity/2]) / 2
-	} else {
-		medianValue = a.Data[a.quantity/2]
+	if len(a.Data) != 0 {
+		if a.quantity%2 == 0 {
+			medianValue = (a.Data[(a.quantity-1)/2] + a.Data[a.quantity/2]) / 2
+		} else {
+			medianValue = a.Data[a.quantity/2]
+		}
+	} else if len(a.Data) == 0 {
+		fmt.Println("No data entered. Cannot calculate median.")
 	}
 	fmt.Printf("Median: %.2f\n", medianValue)
 }
