@@ -5,6 +5,7 @@ import (
 	"encoding/xml"
 	"flag"
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -37,7 +38,7 @@ func (j *JSONReader) Read(file string) Recipes {
 	jsonFile, _ := os.ReadFile(file)
 	err := json.Unmarshal([]byte(jsonFile), &j)
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
 	return Recipes(*j)
 }
@@ -47,7 +48,7 @@ func (j *JSONReader) Convert() []byte {
 	data, err := xml.MarshalIndent(j, "", "    ")
 
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
 
 	return data
@@ -58,7 +59,7 @@ func (x *XMLReader) Read(file string) Recipes {
 	err := xml.Unmarshal([]byte(jsonFile), &x)
 
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
 	return Recipes(*x)
 }
@@ -68,7 +69,7 @@ func (x *XMLReader) Convert() []byte {
 	data, err := json.MarshalIndent(x, "", "    ")
 
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
 
 	return data
@@ -91,7 +92,8 @@ func Start() {
 
 func Parse(file string, reader DBReader) {
 	path := filepath.Join(file)
-	fmt.Printf("%v\n\n%v", reader.Read(path), string(reader.Convert()))
+	reader.Read(path)
+	fmt.Printf("%v\n", string(reader.Convert()))
 }
 
 func main() {
